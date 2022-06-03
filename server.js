@@ -126,7 +126,7 @@ const app = http.createServer((req, res) => {
       console.log(todos);
       res.statusCode = 200;
       console.log("One part of a todo has been changed");
-      res.end();
+      res.end(JSON.stringify(todo));
       writeFile(todos);
     });
   }
@@ -143,18 +143,6 @@ const app = http.createServer((req, res) => {
     writeFile(todos, null, "\t");
     res.end();
   }
-  /*
-  if (req.method === "DELETE" && url[1] === "todos" && url.length === 3) {
-    const [route, id] = req.url.split("/").filter((item) => item.length > 0);
-
-    const filteredTodos = todos.filter((todo) => todo.id !== parseInt(id));
-    writeFile(filteredTodos);
-    res.setHeader("Content-Type", "application/json");
-    res.statusCode = 200;
-    console.log("Requested todo has been deleted");
-    res.end(JSON.stringify(filteredTodos));
-  }
-  */
 });
 
 
